@@ -1,5 +1,6 @@
 let express = require('express')
 let bodyParser = require('body-parser')
+const {sequelize} = require('./models')
 
 const app = express()
 
@@ -25,3 +26,9 @@ let port = 8081
 app.listen(port, function () {
  console.log('server running on ' + port)
 })
+
+equelize.sync({force: false}).then(() => {
+    app.listen(port, function () {
+    console.log('Server running on ' + port)
+    })
+   })
