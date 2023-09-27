@@ -9,6 +9,11 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/user/:userId',
+      name: 'user',
+      component: UserShow
+      },
+    {
       path: "/users",
       name: "users",
       component: UserIndex
@@ -22,11 +27,6 @@ export default new Router({
       path: "/user/edit",
       name: "user-edit",
       component: UserEdit
-    },
-    {
-      path: "/user",
-      name: "user",
-      component: UserShow
     }
   ]
 });
