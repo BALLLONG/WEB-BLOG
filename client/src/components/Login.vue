@@ -5,16 +5,24 @@
             <p>Username: <input type="text" v-model="email" /></p>
             <p>Password: <input type="password" v-model="password" /></p>
             <p><button type="submit">Login</button></p>
+            <div class="error" v-if="error">{{ error }}</div>
         </form>
     </div>
 </template>
+<style scoped>
+.error {
+    color: red;
+}
+</style>
 <script>
 import AuthenService from '@/services/AuthenService'
 export default {
+
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            error: null
         }
     },
     methods: {
@@ -31,6 +39,9 @@ export default {
                 })
             } catch (error) {
                 console.log(error)
+                this.error = error.response.data.error
+                this.email = ''
+                this.password = ''
             }
         }
     }
